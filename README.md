@@ -1,4 +1,4 @@
-# atomicbase-js
+# Atomicbase-js
 
 A server-side sdk for [Atomicbase](https://github.com/joe-ervin05/atomicbase).
 
