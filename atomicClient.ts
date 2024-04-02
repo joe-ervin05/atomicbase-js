@@ -1,21 +1,32 @@
-import AtomicQueryClient from "./atomicQueryClient";
-import AtomicSchemaClient from "./atomicSchemaClient";
+import AtomicDBClient from "./atomicDBClient";
 
 export default class AtomicClient {
     private url : string;
     private secretKey : string;
-    private dbName : string | undefined;
-    schema : AtomicSchemaClient;
 
-    constructor(url : string, secretKey : string, dbName : string | undefined = undefined) {
+    constructor(url : string, secretKey : string) {
         this.url = url;
         this.secretKey = secretKey;
-        this.dbName = dbName;
-        this.schema = new AtomicSchemaClient(this.url, this.dbName, this.secretKey);
     }
-    
-    from(relation : string) {
-        return new AtomicQueryClient(this.url, relation, this.dbName, this.secretKey);
+
+    with(dbName : string) {
+        return new AtomicDBClient(this.url, this.secretKey, dbName);
+    }
+
+    withPrimary() {
+        return new AtomicDBClient(this.url, this.secretKey)
+    }
+
+    listDBs() {
+        
+    }
+
+    createDB(dbName : string) {
+
+    }
+
+    deleteDB() {
+
     }
 
 }

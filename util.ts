@@ -1,25 +1,8 @@
-
-export type ColOpts = {
-    primaryKey?: boolean;
-    references?: string;
-    onDelete?: 'no action' | 'restrict' | 'set null' | 'set default' | 'cascade';
-    onUpdate?: 'no action' | 'restrict' | 'set null' | 'set default' | 'cascade';
-}
-
-
-export type Column = {
-    type : string;
-    primaryKey?: boolean;
-    references? : string;
-    onDelete?: 'no action' | 'restrict' | 'set null' | 'set default' | 'cascade';
-    onUpdate?: 'no action' | 'restrict' | 'set null' | 'set default' | 'cascade';
-}
-
-export type Table = Record<string, Column>
+import type { ColumnOptions, Column } from "./types";
 
 export const column = {
 
-    integer(options : ColOpts = {}) {
+    integer(options : ColumnOptions = {}) {
         const col : Column = {
             type: "INTEGER"
         }
@@ -41,7 +24,7 @@ export const column = {
 
         return col
     },
-    real(options : ColOpts = {}) {
+    real(options : ColumnOptions = {}) {
         const col : Column = {
             type: "REAL"
         }
@@ -63,7 +46,7 @@ export const column = {
 
         return col
     },
-    text(options : ColOpts = {}) {
+    text(options : ColumnOptions = {}) {
         const col : Column = {
             type: "TEXT"
         }
@@ -85,7 +68,7 @@ export const column = {
 
         return col
     },
-    blob(options : ColOpts = {}) {
+    blob(options : ColumnOptions = {}) {
         const col : Column = {
             type: "BLOB"
         }

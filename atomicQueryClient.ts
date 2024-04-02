@@ -1,36 +1,5 @@
 import fetch from "cross-fetch";
-import type { Headers } from "./types";
-
-type SelectOpts = {
-    select?: string;
-    order?: string;
-    where?: Record<string, string>
-}
-
-type InsertOpts = {
-    insert: Record<string, any>;
-    select?: string;
-    order?: string;
-}
-
-type UpsertOpts = {
-    upsert: Record<string, any>[];
-    select?: string;
-    order?: string;
-}
-
-type UpdateOpts = {
-    update: Record<string, any>[];
-    select?: string;
-    order?: string;
-    where?: Record<string, string>;
-}
-
-type DeleteOpts = {
-    select?: string;
-    order?: string;
-    where: Record<string, string>;
-}
+import type { Headers, SelectOptions, InsertOptions, DeleteOptions, UpdateOptions, UpsertOptions } from "./types";
 
 export default class AtomicQueryClient {
     private secretKey : string;
@@ -45,7 +14,7 @@ export default class AtomicQueryClient {
         this.relation = relation;
     }
 
-    async select(options : SelectOpts = {}) : Promise<{ data: any, error : string | null }> {
+    async select(options : SelectOptions = {}) : Promise<{ data: any, error : string | null }> {
         let reqUrl = `${this.url}/api/${this.relation}`;
         if (!options.select) {
             options.select = "*"
@@ -69,7 +38,7 @@ export default class AtomicQueryClient {
         return resp.json();
     }
 
-    async update(options : UpdateOpts) : Promise<{ data: any, error : string | null }> {
+    async update(options : UpdateOptions) : Promise<{ data: any, error : string | null }> {
         let reqUrl = `${this.url}/api/${this.relation}`;
         let params = "";
 
@@ -100,7 +69,7 @@ export default class AtomicQueryClient {
         return resp.json();
     }
 
-    async insert(options : InsertOpts) : Promise<{ data: any, error : string | null }> {
+    async insert(options : InsertOptions) : Promise<{ data: any, error : string | null }> {
         let reqUrl = `${this.url}/api/${this.relation}`;
         
         if (options.select) {
@@ -127,7 +96,7 @@ export default class AtomicQueryClient {
         return resp.json();
     }
 
-    async upsert(options : UpsertOpts) : Promise<{ data: any, error : string | null }> {
+    async upsert(options : UpsertOptions) : Promise<{ data: any, error : string | null }> {
         let reqUrl = `${this.url}/api/${this.relation}`;
 
         if (options.select) {
@@ -155,7 +124,7 @@ export default class AtomicQueryClient {
         return resp.json();
     }
 
-    async delete(options : DeleteOpts) : Promise<{ data: any, error : string | null }> {
+    async delete(options : DeleteOptions) : Promise<{ data: any, error : string | null }> {
         let reqUrl = `${this.url}/api/${this.relation}`;
         let params = "";
 

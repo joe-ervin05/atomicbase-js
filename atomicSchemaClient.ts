@@ -1,6 +1,5 @@
 import fetch from "cross-fetch";
-import type { Headers } from "./types";
-import type { Table } from "./util";
+import type { Headers, Table } from "./types";
 
 export default class AtomicSchemaClient {
     private url : string;
@@ -13,20 +12,34 @@ export default class AtomicSchemaClient {
         this.secretKey = secretKey;
     }
 
-    async alterTable(name : string) : Promise<{ data: any, error : string | null }> {
-        const headers : Headers = {
-            "Authorization": "Bearer "+this.secretKey
+    withTable(tblName : string) {
+        return {
+            renameTable: async (newName : string) => {
+                const headers : Headers = {
+                    "Authorization": "Bearer "+this.secretKey
+                }
+        
+                if (this.dbName) {
+                    headers["DB-Name"] = this.dbName;
+                }
+        
+                const resp = await fetch(`${this.url}/api/schema/table/${tblName}/rename/${newName}`, {
+                    headers,
+                    method: "POST"
+                })
+        
+                return resp.json();
+            },
+            renameColumns: async (columns : Record<string, string>) => {
+        
+            },
+            addColumns: async (newColumns : Table) => {
+                
+            },
+            dropColumn: async (colName : string) => {
+                
+            }
         }
-
-        if (this.dbName) {
-            headers["DB-Name"] = this.dbName;
-        }
-
-        const resp = await fetch(`${this.url}/api/schema/table/${name}`, {
-            method: "PATCH"
-        })
-
-        return resp.json();
     }
 
     async createTable(name : string, table : Table) : Promise<{ data: any, error : string | null }> {

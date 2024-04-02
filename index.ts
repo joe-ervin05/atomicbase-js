@@ -1,4 +1,15 @@
-import AtomicClient from "./atomicClient";
-import { column } from "./util";
+export { default as AtomicClient       } from './atomicClient';
+export { default as AtomicDBClient     } from './atomicDBClient';
+export { default as AtomicSchemaClient } from './atomicSchemaClient';
+export { default as AtomicQueryClient  } from './atomicQueryClient';
 
-const client = new AtomicClient("http://localhost:8080", "", "db1");
+export type {
+    SelectOptions,
+    InsertOptions,
+    UpdateOptions,
+    UpsertOptions,
+    DeleteOptions,
+    Column,
+    ColumnOptions,
+    Table
+} from './types';
