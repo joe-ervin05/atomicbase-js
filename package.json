@@ -1,5 +1,5 @@
 {
-  "name": "turest-js",
+  "name": "atomicbase-js",
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
