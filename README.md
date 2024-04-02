@@ -45,3 +45,4 @@ As well as functions for managing the schema of your databases:
 - schema.alterTable()
 - schema.dropTable()
 
+It is important to call `invalidateSchema()` if any schema changes are made without using the client so that the schema cache stays up to date.
