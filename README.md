@@ -25,7 +25,7 @@ const ATOMIC_DBNAME = 'myDB';
 const client = new AtomicClient(
     ATOMIC_SERVER_URL, 
     ATOMIC_PRIVATE_KEY, 
-    ATOMIC_DBNAME
+    ATOMIC_DBNAME // leave blank to access the primary DB
 );
 ```
 
