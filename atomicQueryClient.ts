@@ -32,7 +32,7 @@ type DeleteOpts = {
     where: Record<string, string>;
 }
 
-export default class TurestQueryClient {
+export default class AtomicQueryClient {
     private secretKey : string;
     private dbName : string | undefined;
     private url : string;

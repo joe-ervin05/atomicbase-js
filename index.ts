@@ -1,4 +1,4 @@
-import TurestClient from "./turestClient";
+import AtomicClient from "./atomicClient";
 import { column } from "./util";
 
-const client = new TurestClient("http://localhost:8080", "", "db1");
+const client = new AtomicClient("http://localhost:8080", "", "db1");

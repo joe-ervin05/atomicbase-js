@@ -2,7 +2,7 @@ import fetch from "cross-fetch";
 import type { Headers } from "./types";
 import type { Table } from "./util";
 
-export default class TurestSchemaClient {
+export default class AtomicSchemaClient {
     private url : string;
     private dbName : string | undefined;
     private secretKey : string;
